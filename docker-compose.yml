@@ -14,7 +14,7 @@ services:
     environment:
       - SECRET_KEY=0#pny4oox9s#+#5dkde25dj79b-o^sdbz4kiumg#e1qx3ky
       - ALLOWED_HOSTS='gunicorn'
-      - DATABASE_URL=postgres://exempro:bemloko@postgres/sige
+      - DATABASE_URL=postgres://exempro:bemloko@postgres/exempro
     volumes:
       - ./:/opt/djangoSIGE/
     links:
