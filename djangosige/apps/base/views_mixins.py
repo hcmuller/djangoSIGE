@@ -39,8 +39,7 @@ class CheckPermissionMixin(object):
         perms = []
         for permission in self.permission_codename:
             if '.' not in permission:
-                permission = str(
-                    request.resolver_match.app_name) + '.' + str(permission)
+                permission = request.resolver_match.app_name.split('.')[-1] + '.' + permission
             perms.append(permission)
         return len(self.permission_codename) and (request.user.is_superuser or request.user.has_perms(perms))
 
