@@ -1,5 +1,4 @@
 FROM alpine:3.7
-MAINTAINER lukasgarcya@hotmail.com
 RUN mkdir -p /opt/djangoSIGE/
 WORKDIR /opt/djangoSIGE/
 COPY requirements.txt /opt/djangoSIGE/
