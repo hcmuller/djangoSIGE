@@ -12,6 +12,7 @@ services:
     image: andrecamara/djangosige
     command: gunicorn -b 0.0.0.0:8000 djangosige.wsgi:application
     environment:
+      # - DEBUG=True
       - SECRET_KEY=0#pny4oox9s#+#5dkde25dj79b-o^sdbz4kiumg#e1qx3ky
       - ALLOWED_HOSTS='gunicorn'
       - DATABASE_URL=postgres://exempro:bemloko@postgres/exempro
