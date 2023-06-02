@@ -1,12 +1,24 @@
-FROM alpine:3.18
+FROM alpine:3.16
 RUN mkdir -p /opt/djangoSIGE/
 WORKDIR /opt/djangoSIGE/
 COPY requirements.txt /opt/djangoSIGE/
-RUN apk add --no-cache python3 python3-dev \
-    py3-cffi zlib-dev gcc jpeg-dev \
-    linux-headers libressl-dev \
-    libxml2-dev libxslt-dev \
-    musl-dev postgresql-dev
 
-RUN pip3 install -r requirements.txt 
-RUN pip3 install gunicorn psycopg2
+RUN apk update
+RUN apk add --no-cache libffi-dev \ 
+    libressl-dev \ 
+    py3-cffi  \ 
+    zlib-dev  \ 
+    gcc  \ 
+    jpeg-dev \ 
+    linux-headers  \ 
+    libxml2-dev  \ 
+    libxslt-dev \ 
+    musl-dev  \ 
+    python3-dev \ 
+    python3 \ 
+    py3-pip \ 
+    postgresql-dev
+
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt 
+RUN pip install gunicorn psycopg2
