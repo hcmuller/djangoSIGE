@@ -17,9 +17,8 @@ RUN apk add --no-cache libffi-dev \
     python3 \ 
     py3-pip \ 
     postgresql-dev \
-    tzdata \ 
-    certbot
+    tzdata
 
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt 
-RUN pip3 install gunicorn psycopg2 certbot-nginx
+RUN pip3 install gunicorn psycopg2
