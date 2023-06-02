@@ -9,7 +9,8 @@ services:
     volumes:
       - ./database:/var/lib/postgresql/data
   gunicorn:
-    image: andrecamara/djangosige
+    build: .
+    # image: andrecamara/djangosige
     command: gunicorn -b 0.0.0.0:8000 djangosige.wsgi:application
     environment:
       - DEBUG=True
