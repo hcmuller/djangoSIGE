@@ -1,9 +1,8 @@
-FROM alpine:3.16
+FROM alpine:3.11
 RUN mkdir -p /opt/djangoSIGE/
 WORKDIR /opt/djangoSIGE/
 COPY requirements.txt /opt/djangoSIGE/
 
-RUN apk update
 RUN apk add --no-cache libffi-dev \ 
     libressl-dev \ 
     py3-cffi  \ 
@@ -17,8 +16,9 @@ RUN apk add --no-cache libffi-dev \
     python3-dev \ 
     python3 \ 
     py3-pip \ 
-    postgresql-dev
+    postgresql-dev \
+    tzdata
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt 
-RUN pip install gunicorn psycopg2
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt 
+RUN pip3 install gunicorn psycopg2
