@@ -37,7 +37,7 @@
     },
     {
         "fields": {
-            "banco_padrao": 1,
+            "banco_padrao": null,
             "criado_por": 1,
             "data_criacao": "2017-07-04T16:46:50.145Z",
             "data_edicao": "2017-07-07T23:57:21.630Z",

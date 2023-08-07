@@ -22,8 +22,16 @@
     <!-- Jquery 3.0.0 Js -->
     <script src="{% static 'js/jquery/jquery-3.0.0.min.js' %}"></script>
 
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            setInterval(function() {
+                document.getElementsByClassName("data-atual")[0].innerHTML = new Date().toLocaleDateString();
+                document.getElementsByClassName("hora-atual")[0].innerHTML = new Date().toLocaleTimeString();
+            }, 1000);
+        });
+    </script>
 
-    <title>DjangoSIGE | {%block title%}Bem-vindo{%endblock%}</title>
+    <title>MK SIGE | {%block title%}Bem-vindo{%endblock%}</title>
 </head>
 
 <body class="{%block body_class%}theme{%endblock%}">
@@ -58,9 +66,9 @@
                     <span><a href="{% url 'djangosige.apps.base:index' %}">MK<b style="color:#e76d64;"> SIGE</b></a></span>
                     <!--<span style="padding-left:30px;">Bem-vindo(a), <strong class="username-strong"></strong></span>-->
                     <span style="padding-left:25px;"><i class="material-icons">&#xE8DF;</i></span>
-                    <span>{%now "l, j/m/Y"%}</span>
+                    <span class="data-atual"></span>
                     <span style="padding-left:10px;"><i class="material-icons ">&#xE8B5;</i></span>
-                    <span>{% now "H:i" %}</span>
+                    <span class="hora-atual"></span>
                     <!-- #Main icone, data e horario -->
                 </div>
 

@@ -95,8 +95,10 @@ class CadastroAdicionarViewsTestCase(BaseTestCase):
             # Assert form invalido
             pessoa_data['{}_form-nome_razao_social'.format(model_name)] = ''
             response = self.client.post(url, pessoa_data, follow=True)
-            self.assertFormError(
-                response, 'form', 'nome_razao_social', 'Este campo é obrigatório.')
+
+            # self.assertFormError(
+            #     response, 'form', 'nome_razao_social', 'Este campo é obrigatório.')
+            assert response.context['form'].errors['nome_razao_social'] == ['Este campo é obrigatório.']
 
     def test_add_produto_post_request(self):
         url = reverse('djangosige.apps.cadastro:addprodutoview')
@@ -221,8 +223,9 @@ class CadastroEditarViewsTestCase(BaseTestCase):
             data[
                 '{}_form-nome_razao_social'.format(response.context['form'].prefix)] = ''
             response = self.client.post(url, data, follow=True)
-            self.assertFormError(
-                response, 'form', 'nome_razao_social', 'Este campo é obrigatório.')
+            # self.assertFormError(
+            #     response, 'form', 'nome_razao_social', 'Este campo é obrigatório.')
+            assert response.context['form'].errors['nome_razao_social'] == ['Este campo é obrigatório.']
 
     def test_edit_produto_get_post_request(self):
         # Buscar objeto qualquer
