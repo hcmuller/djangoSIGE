@@ -25,7 +25,14 @@
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
             setInterval(function() {
-                document.getElementsByClassName("data-atual")[0].innerHTML = new Date().toLocaleDateString();
+                // mostrar nome do dia da semana na data
+                document.getElementsByClassName("data-atual")[0].innerHTML = new Date().toLocaleDateString('pt-BR', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
                 document.getElementsByClassName("hora-atual")[0].innerHTML = new Date().toLocaleTimeString();
             }, 1000);
         });
