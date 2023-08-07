@@ -30,6 +30,6 @@ services:
       - ./djangosige/static/:/opt/djangoSIGE/static/
       - ./djangosige/media/:/opt/djangoSIGE/media/
     ports:
-      - 6000:80
+      - 6001:80
     links:
       - gunicorn
