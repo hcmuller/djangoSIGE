@@ -74,8 +74,10 @@ class ComprasAdicionarViewsTestCase(BaseTestCase):
         # Assert form invalido
         data['fornecedor'] = ''
         response = self.client.post(url, data, follow=True)
-        self.assertFormError(
-            response, 'form', 'fornecedor', 'Este campo é obrigatório.')
+
+        # self.assertFormError(
+        #     response, 'form', 'fornecedor', 'Este campo é obrigatório.')
+        assert response.context['form'].errors['fornecedor'] == ['Este campo é obrigatório.']
 
     def test_add_pedido_compra_view_post_request(self):
         url = reverse('djangosige.apps.compras:addpedidocompraview')
@@ -108,8 +110,10 @@ class ComprasAdicionarViewsTestCase(BaseTestCase):
         # Assert form invalido
         data['fornecedor'] = ''
         response = self.client.post(url, data, follow=True)
-        self.assertFormError(
-            response, 'form', 'fornecedor', 'Este campo é obrigatório.')
+        # self.assertFormError(
+        #     response, 'form', 'fornecedor', 'Este campo é obrigatório.')
+
+        assert response.context['form'].errors['fornecedor'] == ['Este campo é obrigatório.']
 
 
 class ComprasListarViewsTestCase(BaseTestCase):

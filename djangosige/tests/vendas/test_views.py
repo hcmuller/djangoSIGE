@@ -85,8 +85,10 @@ class VendasAdicionarViewsTestCase(BaseTestCase):
         # Assert form invalido
         data['cliente'] = ''
         response = self.client.post(url, data, follow=True)
-        self.assertFormError(
-            response, 'form', 'cliente', 'Este campo é obrigatório.')
+        
+        # self.assertFormError(
+        #     response, 'form', 'cliente', 'Este campo é obrigatório.')
+        assert response.context['form'].errors['cliente'] == ['Este campo é obrigatório.']
 
     def test_add_pedido_venda_view_post_request(self):
         url = reverse('djangosige.apps.vendas:addpedidovendaview')
@@ -118,8 +120,10 @@ class VendasAdicionarViewsTestCase(BaseTestCase):
         # Assert form invalido
         data['cliente'] = ''
         response = self.client.post(url, data, follow=True)
-        self.assertFormError(
-            response, 'form', 'cliente', 'Este campo é obrigatório.')
+
+        # self.assertFormError(
+        #     response, 'form', 'cliente', 'Este campo é obrigatório.')
+        assert response.context['form'].errors['cliente'] == ['Este campo é obrigatório.']
 
     def test_add_condicao_pagamento_view_post_request(self):
         url = reverse('djangosige.apps.vendas:addcondicaopagamentoview')
