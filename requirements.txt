@@ -1,10 +1,10 @@
 https://github.com/hcmuller/geraldo/archive/master.zip
 https://github.com/hcmuller/PySIGNFe/archive/master.zip
-Django>=3.2.*
+Django>=4
 dj-database-url==1.*
-python-decouple==3.8
+python-decouple>=3.8
 pytz>=2022.1
-reportlab==3.6.*
+reportlab==3.4.*
 six==1.11.*
 cryptography>=2.3
 lxml==4.9.1
