@@ -149,3 +149,5 @@ LOGIN_NOT_REQUIRED = (
     r'/login/trocarsenha/',
     r'/logout/',
 )
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

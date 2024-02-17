@@ -2,10 +2,8 @@
 
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.utils.formats import localize
 from decimal import Decimal
-
-import locale
-locale.setlocale(locale.LC_ALL, '')
 
 
 FORMAS_PAG_ESCOLHAS = (
@@ -32,7 +30,7 @@ class Pagamento(models.Model):
 
     @property
     def format_valor_parcela(self):
-        return locale.format(u'%.2f', self.valor_parcela, 1)
+        return localize(self.valor_parcela)
 
     @property
     def format_vencimento(self):

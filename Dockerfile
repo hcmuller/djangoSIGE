@@ -3,6 +3,7 @@ RUN mkdir -p /opt/djangoSIGE/
 WORKDIR /opt/djangoSIGE/
 COPY requirements.txt /opt/djangoSIGE/
 
+RUN apk update
 RUN apk add --no-cache libffi-dev \ 
     libressl-dev \ 
     py3-cffi  \ 

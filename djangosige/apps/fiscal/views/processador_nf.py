@@ -43,6 +43,9 @@ class ProcessadorNotaFiscal(object):
         nfe.infNFe.ide.serie.valor = nota_obj.serie
         nfe.infNFe.ide.nNF.valor = nota_obj.n_nf_saida
 
+        print("###############")
+        print(nota_obj.dhemi)
+        print("###############")
         if nota_obj.dhemi:
             nfe.infNFe.ide.dhEmi.valor = nota_obj.dhemi.replace(tzinfo=None)
         if nota_obj.dhsaient:

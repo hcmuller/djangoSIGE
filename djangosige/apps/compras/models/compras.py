@@ -4,14 +4,12 @@ from django.db import models
 from django.template.defaultfilters import date
 from django.core.validators import MinValueValidator
 from django.urls import reverse_lazy
+from django.utils.formats import localize
 
 from decimal import Decimal
 
 from djangosige.apps.vendas.models import TIPOS_DESCONTO_ESCOLHAS, MOD_FRETE_ESCOLHAS, STATUS_ORCAMENTO_ESCOLHAS
 from djangosige.apps.estoque.models import DEFAULT_LOCAL_ID
-
-import locale
-locale.setlocale(locale.LC_ALL, '')
 
 STATUS_PEDIDO_COMPRA_ESCOLHAS = (
     (u'0', u'Aberto'),
@@ -82,30 +80,30 @@ class ItensCompra(models.Model):
         return total_com_impostos
 
     def format_total_impostos(self):
-        return locale.format(u'%.2f', self.get_total_impostos(), 1)
+        return localize(self.get_total_impostos())
 
     def format_total_com_imposto(self):
-        return locale.format(u'%.2f', self.get_total_com_impostos(), 1)
+        return localize(self.get_total_com_impostos())
 
     def format_desconto(self):
-        return '{0}'.format(locale.format(u'%.2f', self.get_valor_desconto(), 1))
+        return '{0}'.format(localize(self.get_valor_desconto()))
 
     def format_quantidade(self):
-        return locale.format(u'%.2f', self.quantidade, 1)
+        return localize(self.quantidade)
 
     def format_valor_unit(self):
-        return locale.format(u'%.2f', self.valor_unit, 1)
+        return localize(self.valor_unit)
 
     def format_total(self):
-        return locale.format(u'%.2f', self.subtotal, 1)
+        return localize(self.subtotal)
 
     def format_vprod(self):
-        return locale.format(u'%.2f', self.vprod, 1)
+        return localize(self.vprod)
 
     def format_valor_attr(self, nome_attr):
         valor = getattr(self, nome_attr)
         if valor is not None:
-            return locale.format(u'%.2f', valor, 1)
+            return localize(valor)
 
 
 class Compra(models.Model):
@@ -161,7 +159,7 @@ class Compra(models.Model):
         return tot
 
     def format_total_produtos(self):
-        return locale.format(u'%.2f', self.get_total_produtos(), 1)
+        return localize(self.get_total_produtos())
 
     @property
     def impostos(self):
@@ -172,26 +170,26 @@ class Compra(models.Model):
         return '%s' % date(self.data_emissao, "d/m/Y")
 
     def format_valor_total(self):
-        return locale.format(u'%.2f', self.valor_total, 1)
+        return localize(self.valor_total)
 
     def format_frete(self):
-        return locale.format(u'%.2f', self.frete, 1)
+        return localize(self.frete)
 
     def format_impostos(self):
-        return locale.format(u'%.2f', self.impostos, 1)
+        return localize(self.impostos)
 
     def format_vicms(self):
-        return locale.format(u'%.2f', self.total_icms, 1)
+        return localize(self.total_icms)
 
     def format_vipi(self):
-        return locale.format(u'%.2f', self.total_ipi, 1)
+        return localize(self.total_ipi)
 
     def format_total_sem_imposto(self):
-        return locale.format(u'%.2f', self.get_total_sem_imposto(), 1)
+        return localize(self.get_total_sem_imposto())
 
     def format_desconto(self):
         if self.tipo_desconto == '0':
-            return locale.format(u'%.2f', self.desconto, 1)
+            return localize(self.desconto)
         else:
             itens = ItensCompra.objects.filter(compra_id=self.id)
             tot = 0
@@ -199,17 +197,17 @@ class Compra(models.Model):
                 tot += it.get_total_sem_desconto()
 
             v_desconto = tot * (self.desconto / 100)
-            return locale.format(u'%.2f', v_desconto, 1)
+            return localize(v_desconto)
 
     def format_seguro(self):
-        return locale.format(u'%.2f', self.seguro, 1)
+        return localize(self.seguro)
 
     def format_despesas(self):
-        return locale.format(u'%.2f', self.despesas, 1)
+        return localize(self.despesas)
 
     def format_total_sem_desconto(self):
         total_sem_desconto = self.valor_total - self.desconto
-        return locale.format(u'%.2f', total_sem_desconto, 1)
+        return localize(total_sem_desconto)
 
     def get_forma_pagamento(self):
         if self.cond_pagamento:
