@@ -320,4 +320,4 @@ class RespostaSefazNotaFiscal(models.Model):
     tipo = models.CharField(
         max_length=1, choices=RETORNO_SEFAZ_TIPOS, null=True, blank=True)
     codigo = models.CharField(max_length=3, null=True, blank=True)
-    descricao = models.CharField(max_length=255, null=True, blank=True)
+    descricao = models.TextField(null=True, blank=True)

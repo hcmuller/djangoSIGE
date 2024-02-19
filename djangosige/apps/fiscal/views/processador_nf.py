@@ -43,9 +43,6 @@ class ProcessadorNotaFiscal(object):
         nfe.infNFe.ide.serie.valor = nota_obj.serie
         nfe.infNFe.ide.nNF.valor = nota_obj.n_nf_saida
 
-        print("###############")
-        print(nota_obj.dhemi)
-        print("###############")
         if nota_obj.dhemi:
             nfe.infNFe.ide.dhEmi.valor = nota_obj.dhemi.replace(tzinfo=None)
         if nota_obj.dhsaient:
@@ -309,8 +306,11 @@ class ProcessadorNotaFiscal(object):
         nfe.infNFe.total.ICMSTot.vCOFINS.valor = nota_obj.venda.get_valor_total_attr(
             'vcofins')
         nfe.infNFe.total.ICMSTot.vOutro.valor = nota_obj.venda.despesas
-        nfe.infNFe.total.ICMSTot.vICMSDeson.valor = nota_obj.venda.get_valor_total_attr(
-            'vicms_deson')
+        if nota_obj.venda.get_valor_total_attr('vicms_deson') == 0:
+            nfe.infNFe.total.ICMSTot.vICMSDeson.valor = 0.0
+        else:
+            nfe.infNFe.total.ICMSTot.vICMSDeson.valor = nota_obj.venda.get_valor_total_attr(
+                'vicms_deson')
         nfe.calcula_total_nfe()
 
         # Transporte
